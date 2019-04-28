@@ -1,0 +1,25 @@
+version: "3"
+unifi-controller:
+    container_name: unifi-controller
+    image: linuxserver/unifi-controller
+    restart: always
+    ports:
+        - 3478:3478/udp
+        - 10001:10001/udp
+        - 8080:8080
+        - 8081:8081
+        - 8443:8443
+        - 8843:8843
+        - 8880:8880
+        - 6789:6789
+    environment:
+        - TZ="America/New_York"
+        - PUID=1000
+        - PGID=1000
+    volumes:
+        - /home/pi/docker/unifi:/config
+    networks:
+        unifi:
+            driver: bridge
+        
+        

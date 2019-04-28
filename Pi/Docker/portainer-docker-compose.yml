@@ -1,0 +1,17 @@
+version: "3.0"
+	portainer:
+		container_name: portainer
+	    hostname: portainer
+		image: portainer/portainer
+	    restart: always
+		ports:
+			- "9000:9000"
+		envoironment:
+			- TZ="America/New_York"
+		volumes:
+			- /var/run/docker.sock:/var/run/docker.sock
+			- /home/pi/docker/portainer/data:/data
+			- /home/pi/docker/shared:/shared
+		networks:
+			- default
+		command: -H unix:///var/run/docker.sock

@@ -1,0 +1,46 @@
+version: "3.0"
+	<name>:
+		container_name: <name>
+	    hostname: <name>
+		image: username/<name>
+	    # restart: always
+	    # restart: unless-stopped
+		ports:
+			- "80:80"
+		envoironment:
+			- TZ="America/New_York"
+			- PUID=1000
+			- PGID=1000
+		volumes:
+			# - /var/run/docker.sock:/var/run/docker.sock
+			# - /home/pi/docker/shared:/shared
+			- /home/pi/docker/<name>:
+		networks:
+			- default
+		# command:
+
+
+
+# GLOBAL VOLUMES
+# Create Volume
+volumes:
+	<name>:
+# External Volumes
+volumes:
+	ext_vol:
+		external: true
+
+
+#GLOBAL NETWORK
+# Default Network
+networks:
+	default:
+	    driver: bridge
+# Create Network
+networks:
+	<name>:
+		driver: bridge
+# External Network
+networks:
+	ext_net:
+		external: true

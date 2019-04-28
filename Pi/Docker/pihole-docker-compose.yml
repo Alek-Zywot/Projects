@@ -1,0 +1,27 @@
+version: "3.0"
+	pihole:
+		container_name: pihole
+		image: pihole/pihole
+	    hostname: pihole
+	    restart: unless-stopped
+		ports:
+		    - "53:53/tcp"  # DNS port
+            - "53:53/udp"  # DNS port
+            # - "67:67/udp"  # DHCP port
+            - "80:80/tcp"  # HTTP port
+            - "443:443/tcp"  # HTTPS port
+		envoironment:
+            - ServerIP=10.10.10.200
+            - TZ="America/New_York"
+            -  WEBPASSWORD='PiHoleWebPWD'
+            - DNS1=1.1.1.1
+            - DNS2=1.0.0.1
+            - PUID=1000
+			- PGID=1000
+		volumes:
+            - /home/pi/docker/pihole/:/etc/pihole/
+            - /home/pi/docker/pihole/dnsmasq.d/:/etc/dnsmasq.d/'
+		dns:
+            - 127.0.0.1
+            - 1.1.1.1
+	
