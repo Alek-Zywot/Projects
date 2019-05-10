@@ -1,0 +1,36 @@
+{  
+   "service":{  
+      "nat":{  
+         "rule":{  
+            "1":{  
+               "description":"DNS Redirect to pihole",
+               "destination":{  
+                  "port":"53"
+               },
+               "inbound-interface":"LAN",
+               "inside-address":{  
+                  "address":"10.10.10.90",
+                  "port":"53"
+               },
+               "source":{  
+                  "address":"!10.10.10.90"
+               },
+               "log":"disable",
+               "protocol":"tcp_udp",
+               "type":"destination"
+            },
+            "6000":{  
+               "description":"Translate DNS to Internal",
+               "destination":{  
+                  "address":"10.10.10.90",
+                  "port":"53"
+               },
+               "log":"disable",
+               "outbound-interface":"WAN",
+               "protocol":"tcp_udp",
+               "type":"masquerade"
+            }
+         }
+      }
+   }
+}
