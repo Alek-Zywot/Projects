@@ -1,0 +1,10 @@
+[Unit]
+Description=zram
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/usr/bin/zram.sh
+
+[Install]
+WantedBy=multi-user.target
